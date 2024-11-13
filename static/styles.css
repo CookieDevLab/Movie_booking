@@ -1,0 +1,233 @@
+/* From Uiverse.io by JkHuger */ 
+body {
+  display: flex;
+  justify-content: center; /* Centers the container horizontally */
+  align-items: center; /* Centers the container vertically */
+  min-height: 100vh; /* Full height of the viewport */
+  margin: 0; /* Remove default margin */
+  background-color: #f0f0f0; /* Optional: Set a background color */
+  font-family: 'Montserrat', sans-serif;
+}
+.background-image {
+  background: url("/static/background_3.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex; /* Make it a flex container */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.login {
+color: #000;
+text-transform: uppercase;
+letter-spacing: 2px;
+display: block;
+font-weight: bold;
+font-size: x-large;
+margin-top: 50px;
+margin-bottom: 20px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px; /* Adjusted height to ensure space for form */
+    width: 400px;
+    flex-direction: column;
+    gap: 20px;
+    background: #e3e3e3;
+    box-shadow: 16px 16px 32px #c8c8c8,
+        -16px -16px 32px #fefefe;
+    border-radius: 8px;
+    padding: 20px; /* Added padding to the card */
+}
+
+.inputBox {
+    position: relative;
+    width: 100%; /* Use full width */
+    margin-bottom: 20px; /* Ensure space between inputs */
+    max-width: 250px; /* Limit max width to prevent overflow */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  width: 100%; /* Use full width of the parent */
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
+.enter {
+  height: 45px;
+  width: 100px; /* Adjusted width if you prefer a fixed size */
+  border-radius: 5px;
+  border: 2px solid #000;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin: 20px auto; /* Center button horizontally */
+  display: block; /* Make it a block element */
+  
+}
+
+
+
+.inputBox {
+position: relative;
+width: 250px;
+margin-bottom: 35px;
+}
+
+.inputBox input {
+width: 100%;
+padding: 10px;
+outline: none;
+border: none;
+color: #000;
+font-size: 1em;
+background: transparent;
+border-left: 2px solid #000;
+border-bottom: 2px solid #000;
+transition: 0.1s;
+border-bottom-left-radius: 8px;
+}
+
+.inputBox span {
+margin-top: -35px;
+position: absolute;
+left: 0;
+transform: translateY(-4px);
+margin-left: 10px;
+padding: 10px;
+pointer-events: none;
+font-size: 12px;
+color: #000;
+text-transform: uppercase;
+transition: 0.5s;
+letter-spacing: 3px;
+border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+transform: translateX(113px) translateY(-15px);
+font-size: 0.8em;
+padding: 5px 10px;
+background: #dac734;
+letter-spacing: 0.2em;
+color: #000;
+border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+border: 2px solid #000;
+border-radius: 8px;
+}
+
+.enter {
+height: 45px;
+width: 100px;
+border-radius: 5px;
+border: 2px solid #000;
+cursor: pointer;
+background-color: transparent;
+transition: 0.5s;
+text-transform: uppercase;
+font-size: 10px;
+letter-spacing: 2px;
+margin-bottom: 1em;
+}
+
+.enter:hover {
+background-color: #972525;
+color: white;
+}
+
+/* Styles for the Register Page */
+.register-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px; /* Adjusted height for extra input */
+  width: 400px;
+  flex-direction: column;
+  gap: 10px; /* Adjusted gap between elements */
+  background: #e3e3e3;
+  box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe;
+  border-radius: 8px;
+}
+
+.register{
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* General Styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: #e3e3e3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.nav-buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+
+
+
+.home{
+color: #ffffff;
+text-transform: uppercase;
+letter-spacing: 2px;
+display: block;
+font-weight: bold;
+font-size: x-large;
+margin-top: 50px;
+}
+
