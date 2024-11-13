@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <a class="login">Log in</a>
+            <form action="/login" method="POST"> <!-- Added form tag here -->
+                <div class="inputBox">
+                    <input type="text" required="required" name="username">
+                    <span class="user">Username</span>
+                </div>
+
+                <div class="inputBox">
+                    <input type="password" required="required" name="password">
+                    <span class="user">Password</span>
+                </div>
+                <div class="button-container">
+                    <button class="enter" type="submit">Enter</button>
+                </div>
+                
+                <!-- Sign Up link below the login button -->
+                <p>Don't have an account? <a href="/register">Sign Up</a></p>
+            </form> <!-- End of form tag -->
+        </div>
+    </div>
+</body>
+</html>

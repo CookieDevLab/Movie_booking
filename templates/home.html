@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .btn {
+            width: 130px;
+            height: 40px;
+            font-size: 1.1em;
+            cursor: pointer;
+            background-color: #972020; /* Button background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 5px;
+            transition: all 0.6s ease; /* Increased duration and added easing */
+        }
+        
+        .btn:hover {
+            border-radius: 5px;
+            transform: translateY(-10px);
+            box-shadow: 0 7px 0 -2px #f85959,
+                        0 15px 0 -4px #39a2db,
+                        0 16px 10px -3px #39a2db;
+        }
+        
+        .btn:active {
+            transition: all 0.4s ease; /* Increased duration for active state */
+            transform: translateY(-5px);
+            box-shadow: 0 2px 0 -2px #f85959,
+                        0 8px 0 -4px #39a2db,
+                        0 12px 10px -3px #39a2db;
+        }
+        .background-image {
+            background: url("/static/background_3.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+        }
+        .home {
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: x-large;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+    </style>
+</head>
+<body class="background-image">
+    <!-- Hero Section -->
+    <section>
+        <div class="home">
+            <h2>Welcome to Movie Booking</h2>
+            <div class="hero-buttons">
+                <button class="btn" onclick="window.location.href='/login'">Log In</button>
+                <button class="btn" onclick="window.location.href='/register'">Sign Up</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

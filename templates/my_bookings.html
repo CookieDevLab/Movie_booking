@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookings</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: url("/static/background_3.jpg") no-repeat center center fixed;
+            display: flex;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #3c3f43;
+            color: #fff;
+            padding: 1em;
+            width: 100%;
+            text-align: center;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 101%;
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #3c3f43;
+            color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            margin-left: -20px;
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .nav-left a, .nav-right a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .nav-left a:hover, .nav-right a:hover {
+            text-decoration: underline;
+            color: #ffc107;
+        }
+        .navbar a, #user-status {
+            font-size: 1.1em;
+            color: #ffc107;
+        }
+        /* Main Content */
+        main {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(60, 63, 67, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        th {
+            background-color: rgba(151, 32, 32, 0.9);
+            color: #fff;
+        }
+        td {
+            color: #f0f0f0;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(60, 63, 67, 0.8);
+        }
+        /* Cancel Button */
+        .btn {
+            width: 130px;
+            height: 40px;
+            font-size: 1.1em;
+            cursor: pointer;
+            background-color: #972020;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.6s ease;
+        }
+        .btn:hover {
+            border-radius: 5px;
+            transform: translateY(-10px);
+            box-shadow: 0 7px 0 -2px #f85959,
+                        0 15px 0 -4px #39a2db,
+                        0 16px 10px -3px #39a2db;
+        }
+        .btn:active {
+            transition: all 0.4s ease;
+            transform: translateY(-5px);
+            box-shadow: 0 2px 0 -2px #f85959,
+                        0 8px 0 -4px #39a2db,
+                        0 12px 10px -3px #39a2db;
+        }
+    </style>
+</head>
+<body class="background-image">
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="/login">Login</a> |
+                <a href="/register">Signup</a>
+            </div>
+            <div class="nav-right">
+                <span id="user-status">{{ user_status }}</span>
+                <a href="/movies">Movies</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Your Bookings</h2>
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <th>Movie</th>
+                <th>Showtime</th>
+                <th>Seats</th>
+                <th>Parking ID</th>
+                <th>Cancel</th> <!-- New column for Cancel -->
+            </tr>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking[0] }}</td>
+                    <td>{{ booking[1] }}</td>
+                    <td>{{ booking[2] }}</td>
+                    <td>{{ booking[3] }}</td>
+                    <td>{{ booking[4] }}</td>
+                    <td>
+                        <!-- Form to cancel booking -->
+                        <form action="{{ url_for('cancel_booking') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="booking_id" value="{{ booking[0] }}">
+                            <button type="submit" class="btn" onclick="return confirm('Are you sure you want to cancel this booking?');">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+    </main>
+</body>
+</html>

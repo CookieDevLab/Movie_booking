@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book Movie</h2>
+<form method="POST">
+    <label for="seats">Number of Seats:</label>
+    <input type="number" id="seats" name="seats" required min="1">
+
+    <label for="park_option">Reserve Parking?</label>
+    <select id="park_option" name="park_option">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+
+    <div id="parking-options" style="display:none;">
+        <label for="parking_id">Select Parking:</label>
+        <select id="parking_id" name="parking_id">
+            {% for parking in parking_options %}
+                <option value="{{ parking[0] }}">{{ parking[1] }} ({{ parking[2] }} spots available)</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit">Confirm Booking</button>
+</form>
+
+<script>
+    document.getElementById('park_option').addEventListener('change', function() {
+        document.getElementById('parking-options').style.display = this.value === 'yes' ? 'block' : 'none';
+    });
+</script>
+{% endblock %}

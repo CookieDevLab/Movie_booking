@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details - {{ movie[0] }}</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .background-image {
+            background: url("/static/background_3.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+          }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c30;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Space for the fixed navbar */
+        }
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #3c3f43;
+            color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensures navbar is above other content */
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .nav-left a, .nav-right a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .nav-left a:hover, .nav-right a:hover {
+            text-decoration: underline;
+            color: #ffc107;
+        }
+
+        .navbar a, #user-status {
+            font-size: 1.1em;
+            color: #ffc107;
+        }
+        
+        /* Container styles */
+        .container {
+            background-color: rgba(128, 128, 128, 0.85); /* Adjust opacity as needed */
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            color: #333;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #fff;
+            margin: 10px 0 5px; 
+            text-align: left;
+        }
+        input[type="number"], select {
+            width: 100%;
+            
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        /* Hide the default checkbox */
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffc107; /* Yellow border */
+            border-radius: 3px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Checkbox checked state */
+        input[type="checkbox"]:checked {
+            background-color: #ffc107; /* Yellow background when checked */
+            border-color: #ffc107; /* Match the yellow color */
+        }
+
+        /* Add a checkmark icon when checked */
+        input[type="checkbox"]:checked::after {
+            content: '✓'; /* Checkmark character */
+            color: white;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #parking_options {
+            display: none;
+            text-align: left;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #808080;
+            border-radius: 5px;
+        }
+        .parking-info {
+            color: #fff;
+            font-size: 14px;
+        }
+        .btn {
+            width: 230px;
+            height: 40px;
+            font-size: 1.1em;
+            cursor: pointer;
+            background-color: #972020;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.6s ease;
+        }
+        .btn:hover {
+            border-radius: 5px;
+            transform: translateY(-10px);
+            box-shadow: 0 7px 0 -2px #f85959,
+                        0 15px 0 -4px #39a2db,
+                        0 16px 10px -3px #39a2db;
+        }
+        .btn:active {
+            transition: all 0.4s ease;
+            transform: translateY(-5px);
+            box-shadow: 0 2px 0 -2px #f85959,
+                        0 8px 0 -4px #39a2db,
+                        0 12px 10px -3px #39a2db;
+        }
+    </style>
+    
+    <script>
+        // Function to show or hide parking options based on the checkbox
+        function toggleParkingOptions() {
+            var parkingCheckbox = document.getElementById('need_parking');
+            var parkingOptions = document.getElementById('parking_options');
+            parkingOptions.style.display = parkingCheckbox.checked ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body class="background-image">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/login">Login</a> |
+            <a href="/register">Signup</a>
+        </div>
+        <div class="nav-right">
+            <span id="user-status">{{ user_status }}</span> <!-- Dynamically replace user status -->
+            <a href="/my_bookings">My Bookings</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Booking Details for {{ movie[0] }}</h1>
+        
+        <form method="POST">
+            <!-- Hidden Showtime ID Field -->
+            <input type="hidden" name="showtime_id" value="{{ showtime_id }}">
+        
+            <!-- Number of Seats Input -->
+            <label for="seats">Number of Seats:</label>
+            <input type="number" name="seats" id="seats" min="1" required>
+            
+            <!-- Parking Checkbox -->
+            <label>
+                <input type="checkbox" id="need_parking" name="need_parking" onchange="toggleParkingOptions()">
+                I need parking
+            </label>
+        
+            <!-- Parking Options -->
+            <div id="parking_options">
+                <label for="parking">Select Parking:</label>
+                <select name="parking_id" id="parking">
+                    <option value="">Select Parking</option>
+                    {% for parking in parking_options %}
+                        <option value="{{ parking[0] }}">{{ parking[1] }} ({{ parking[2] }} spots available)</option>
+                    {% endfor %}
+                </select>
+                <div class="parking-info">
+                    Choose a parking spot if you need one!
+                </div>
+            </div>
+            <br>
+        
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Proceed to Book</button>
+        </form>
+        
+    </div>
+</body>
+</html>

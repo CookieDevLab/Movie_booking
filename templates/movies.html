@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="static/movie_styles.css"> <!-- Separate CSS for movies page -->
+    <!-- Place script before closing </body> -->
+    <script>
+        document.querySelectorAll('.movies-table form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                const dropdown = form.closest('tr').querySelector('.select'); // Select closest dropdown in the same row
+                const selectedShowtimeId = dropdown.querySelector('input[type="radio"]:checked'); // Find selected showtime
+
+                if (!selectedShowtimeId) {
+                    event.preventDefault();
+                    alert('Please select a showtime.');
+                    return;
+                }
+
+                const showtimeId = selectedShowtimeId.id.split('-')[1]; // Extract showtime ID
+                form.action = form.action.replace(/\/\d+$/, '/' + showtimeId); // Update action URL with showtime
+            });
+        });
+    </script>
+
+</head>
+<body class="background-image">
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/login">Login</a> |
+            <a href="/register">Signup</a>
+        </div>
+        <div class="nav-right">
+            <span id="user-status">{{ user_status }}</span> <!-- Dynamically replace user status -->
+            <a href="/my_bookings">My Bookings</a>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <header class="page-title">
+        <h1>Movie Booking System</h1>
+    </header>
+
+    <!-- Movies Section -->
+    <section class="movies-section">
+        <h2>Movies</h2>
+        <table class="movies-table">
+            <tr>
+                <th>Movie Title</th>
+                <th>Showtimes</th>
+                <th>Action</th> <!-- New column for booking button -->
+            </tr>
+            {% for movie_id, movie_data in movies.items() %} <!-- Iterate through the movie dictionary -->
+            <tr>
+                <td>{{ movie_data.title }}</td> <!-- Movie title -->
+                <td>
+                    <div class="select">
+                        <div class="selected" data-default="Select Time">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="1em"
+                                viewBox="0 0 512 512"
+                                class="arrow"
+                            >
+                                <path
+                                    d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="options">
+                            {% for showtime_id, showtime in movie_data.showtimes %}
+                            <div title="{{ showtime }}">
+                                <input id="showtime-{{ showtime_id }}" name="showtime" type="radio" />
+                                <label class="option" for="showtime-{{ showtime_id }}" data-txt="{{ showtime }}"></label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <form action="{{ url_for('booking_details', movie_id=movie_id) }}" method="get" style="display: inline;">
+                        <button type="submit" class="btn">Book</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+</body>
+</html>

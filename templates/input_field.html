@@ -1,0 +1,8 @@
+<div class="form-control">
+    <input type="{{ input_type }}" id="{{ input_id }}" name="{{ input_name }}" required="">
+    <label>
+        {% for char in label_text %}
+            <span style="transition-delay: {{ loop.index0 * 50 }}ms">{{ char }}</span>
+        {% endfor %}
+    </label>
+</div>

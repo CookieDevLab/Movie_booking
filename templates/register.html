@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <form class="register-card" action="/register" method="POST">
+            <a class="register">Register</a>
+
+            <div class="inputBox">
+                <input type="text" required="required" name="username">
+                <span class="user">Username</span>
+            </div>
+
+            <div class="inputBox">
+                <input type="email" required="required" name="email">
+                <span class="user">Email</span>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" required="required" name="password">
+                <span class="user">Password</span>
+            </div>
+
+            <button class="enter" type="submit">Register</button>
+
+            <!-- Log In link below the register button -->
+            <p style="margin-bottom: 40px">Already have an account? <a href="/login">Log In</a></p>
+            
+        </form>
+    </div>
+</body>
+</html>
