@@ -47,12 +47,12 @@ A web application built using **Flask** and **MySQL** that allows users to regis
 ## 🧠 Database Tables
 You will need these main tables:
 
-- \`users\`
-- \`movies\`
-- \`showtimes\`
-- \`bookings\`
-- \`parking\`
-- \`parking_bookings\`
+- `users`
+- `movies`
+- `showtimes`
+- `bookings`
+- `parking`
+- `parking_bookings`
 
 ---
 
