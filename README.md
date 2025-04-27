@@ -26,7 +26,7 @@ A web application built using **Flask** and **MySQL** that allows users to regis
 ---
 
 ## 📂 Project Structure
-\`\`\`plaintext
+```
 ├── app.py
 ├── templates/
 │   ├── home.html
@@ -40,7 +40,7 @@ A web application built using **Flask** and **MySQL** that allows users to regis
 │   └── (CSS/JS Files)
 ├── requirements.txt
 └── README.md
-\`\`\`
+```
 
 ---
 
@@ -60,14 +60,14 @@ You will need these main tables:
 1. Clone the repository.
 2. Set up a MySQL database and update connection settings inside \`app.py\`.
 3. Install dependencies:
-    \`\`\`bash
+    ```bash
     pip install flask mysql-connector-python werkzeug
-    \`\`\`
+    ```
 4. Run the server:
-    \`\`\`bash
+    ```bash
     python app.py
-    \`\`\`
-5. Visit \`http://127.0.0.1:5000/\` in your browser.
+    ```
+5. Visit `http://127.0.0.1:5000/` in your browser.
 
 ---
 
